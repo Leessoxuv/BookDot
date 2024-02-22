@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>책 수정하기</title>
+    <title>책 검색하기</title>
     <style>
         @font-face {
-            font-family: 'EliceDigitalBaeum_Bold';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EliceDigitalBaeum_Bold.woff2')
-             format('woff2');
-            font-weight: 700;
-            font-style: normal;
+           font-family: 'EliceDigitalBaeum_Bold';
+           src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EliceDigitalBaeum_Bold.woff2')
+              format('woff2');
+           font-weight: 700;
+          font-style: normal;
         }
         * {
-           font-family: 'EliceDigitalBaeum_Bold';
-           padding : 20px;
+          font-family: 'EliceDigitalBaeum_Bold';
         }
         h1 {
           font-weight: bold;
         }
-        p {
-           width: 300px;
+        table, tr, td {
+          border: 1px solid #bcbcbc;
         }
-
+        table {
+          width: 500px;
+          height: 200px;
+        }
+        th, td {
+          text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +43,7 @@
                     <a class="nav-link" href="/book/create">생성</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/search/bookSearch">검색</a>
+                    <a class="nav-link" aria-current="page" href="/search/bookSearch">검색</a>
                 </li>
             </ul>
         </div>
@@ -52,11 +57,27 @@
         </form>
     </div>
 </nav>
-<h1>책 수정하기</h1>
-<form method="POST" th:action="@{/book/edit/{id}(id=*{bookId})}" th:object="${bookEditResponseDTO}">
-    <p>제목 : <input type="text" name="title" th:value="*{title}"/></p>
-    <p>가격 : <input type="text" name="price" th:value="*{price}"/></p>
-    <p><input type="submit" value="저장"/></p>
-</form>
+<div id="container">
+    <table class= "table">
+        <thead>
+        <tr>
+            <td><img src="#" alt=""></td>
+            <td><a href="#"></a>제목</td>
+            <td>저자/출판사</td>
+            <td>가격</td>
+        </tr>
+        </thead>
+        <tbody>
+        {{#naverProductDtos}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{author}} / {{publisher}}</td>
+            <td>{{discount}}</td>
+        </tr>
+        {{/naverProductDtos}}
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

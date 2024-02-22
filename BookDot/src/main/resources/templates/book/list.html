@@ -2,19 +2,77 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>책 상세</title>
+    <style>
+        @font-face {
+            font-family: 'EliceDigitalBaeum_Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EliceDigitalBaeum_Bold.woff2')
+             format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+        * {
+           font-family: 'EliceDigitalBaeum_Bold';
+           padding : 20px;
+        }
+        h1 {
+          font-weight: bold;
+        }
+        table, th, td {
+          border: 1px solid #bcbcbc;
+        }
+        table {
+          width: 500px;
+          height: 200px;
+        }
+        th, td {
+          text-align: center;
+        }
+    </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #FFEAD0;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Bookdot</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/book">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/book/create">생성</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search/bookSearch">검색</a>
+                </li>
+            </ul>
+        </div>
+        <form th:action="@{/search/bookSearch}">
+            <div class="col-auto">
+                <input type="text" name="query" class="form-control" id="query" placeholder="검색어를 입력하세요">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">검색</button>
+            </div>
+        </form>
+
+    </div>
+</nav>
 <h1>책 목록</h1>
-<table>
+<div>
+<table border="1">
     <tr>
         <th>책 번호</th>
         <th>책 제목</th>
     </tr>
     <tr th:each="book : ${books}">
-        <td th:text="${book.bookId}"></td>
+        <td>
+            <a th:href="@{/book/read/{id}(id=${book.bookId})}" th:text="${book.bookId}"></a>
+        </td>
         <td th:text="${book.title}"></td>
     </tr>
 </table>
+</div>
 </body>
 </html>

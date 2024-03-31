@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 public class SearchController {
 
-    @GetMapping("/search/bookSearch")
+    @GetMapping("/search/book")
     public List<ItemDTO> getItems(@RequestParam String query, Model model) {
         NaverRequestDTO naverRequestDTO = NaverRequestDTO.builder()
                 .query(query)

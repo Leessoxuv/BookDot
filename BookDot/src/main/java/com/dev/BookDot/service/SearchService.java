@@ -8,9 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.*;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -30,7 +28,7 @@ public class SearchService {
 
         URI uri = UriComponentsBuilder.fromHttpUrl(url)
                 .path("v1/search/book.json")
-                .queryParam("query", naverRequestDTO.getQuery())
+                .queryParam("mappers", naverRequestDTO.getQuery())
                 .queryParam("display", naverRequestDTO.getDisplay())
                 .queryParam("start", naverRequestDTO.getStart())
                 .queryParam("sort", naverRequestDTO.getSort())

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class BookController {
     @Autowired
     private BookService bookService;
-    @GetMapping("/book/create")
+    @GetMapping(value="/create")
     public String create() {
         return "book/create";
     }
@@ -28,7 +28,7 @@ public class BookController {
         return String.format("redirect:/book/read/%s", bookId);
     }
     @GetMapping("/book/read/{bookId}")
-    public ModelAndView read(@PathVariable Integer bookId) {
+    public ModelAndView read(@PathVariable(name="bookId") Integer bookId) {
         ModelAndView mav = new ModelAndView();
         try {
             BookReadResponseDTO bookReadResponseDTO = this.bookService.read(bookId);
@@ -63,7 +63,7 @@ public class BookController {
         return mav;
     }
     @GetMapping("/book/edit/{bookId}")
-    public ModelAndView edit(@PathVariable Integer bookId) throws NoSuchElementException {
+    public ModelAndView edit(@PathVariable(name="bookId") Integer bookId) throws NoSuchElementException {
         ModelAndView mav = new ModelAndView();
         BookEditResponseDTO bookEditResponseDTO = this.bookService.edit(bookId);
         mav.addObject("bookEditResponseDTO", bookEditResponseDTO);

@@ -23,7 +23,7 @@ public class MemberController {
     private final MemberService memberService;
 
     // 로그인 페이지
-    @GetMapping("/login.do")
+    @GetMapping("/member/login")
     public String openLogin() {
         return "member/login";
     }
@@ -57,7 +57,7 @@ public class MemberController {
         return memberService.countMemberByEmail(email);
     }
     // 로그인
-    @PostMapping("/login")
+    @PostMapping("/member/login")
     @ResponseBody
     public MemberResponse login(HttpServletRequest request) {
 
